@@ -46,16 +46,16 @@ void Ground::loop()
                 switch (event.key.keysym.sym)
                 {
                 case SDLK_LEFT:
-                    this->player->move();
+                    this->player->move(LEFT);
                     break;
                 case SDLK_RIGHT:
-                    this->player->move();
+                    this->player->move(RIGHT);
                     break;
                 case SDLK_UP:
-                    this->player->move();
+                    this->player->move(UP);
                     break;
                 case SDLK_DOWN:
-                    this->player->move();
+                    this->player->move(DOWN);
                     break;
                 default:
                     break;
@@ -79,7 +79,7 @@ void Ground::loop()
 
         for (size_t i = 0; i < this->animals.size(); i++)
         {
-            this->animals[i]->move();
+            // this->animals[i]->move();
             this->animals[i]->draw();
 
             // if animal is dead, remove it from the vector and create a new one

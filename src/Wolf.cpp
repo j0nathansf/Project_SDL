@@ -11,22 +11,21 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move()
+void Wolf::move(Direction direction)
 {
-    int direction = rand() % 4;
-    int speed = rand() % 3 + 5;
+    int speed = rand() % 3 + 1;
     switch (direction)
     {
-    case 0:
+    case RIGHT:
         this->x += speed;
         break;
-    case 1:
+    case LEFT:
         this->x -= speed;
         break;
-    case 2:
+    case DOWN:
         this->y += speed;
         break;
-    case 3:
+    case UP:
         this->y -= speed;
         break;
     }

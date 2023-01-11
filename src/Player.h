@@ -7,7 +7,7 @@ class Player : public Entity
 public:
     Player(int x, int y, int velocity, SDL_Renderer *renderer);
     ~Player();
-    void move();
+    void move(Direction direction);
     void draw();
     int isAlive();
 

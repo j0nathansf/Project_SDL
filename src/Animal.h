@@ -8,7 +8,7 @@ class Animal : public Entity
 public:
     Animal(int x, int y, int velocity, SDL_Renderer *renderer, SDL_Surface *texture_image);
     virtual ~Animal();
-    virtual void move() = 0;
+    virtual void move(Direction direction) = 0;
     void draw();
     int isAlive();
 
