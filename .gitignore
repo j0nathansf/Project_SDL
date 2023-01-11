@@ -31,3 +31,9 @@
 *.out
 *.app
 
+# Editors
+.idea
+.vscode
+
+# Build
+build
