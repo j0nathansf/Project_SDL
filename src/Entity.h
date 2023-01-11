@@ -8,6 +8,8 @@ public:
     Entity(int x, int y, int velocity, SDL_Renderer *renderer, SDL_Surface *texture_image);
     virtual ~Entity();
     virtual void move() = 0;
+    virtual void draw() = 0;
+    virtual int isAlive() = 0;
 
 protected:
     int x;

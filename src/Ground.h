@@ -1,8 +1,8 @@
-#pragma once
-
 #include <SDL2/SDL.h>
 #include <vector>
-#include "Animal.h"
+#include "Entity.h"
+
+#pragma once
 
 class Ground
 {
@@ -10,11 +10,11 @@ public:
     Ground(SDL_Renderer *renderer);
     ~Ground();
     void loop();
-    void initAnimals();
+    void init();
 
 private:
     unsigned int frameRate;
-    std::vector<Animal *> animals;
-
+    std::vector<Entity *> animals;
+    Entity *player;
     SDL_Renderer *renderer;
 };

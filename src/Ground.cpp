@@ -1,3 +1,4 @@
+#include "Player.h"
 #include "Ground.h"
 #include "Sheep.h"
 #include "Wolf.h"
@@ -7,9 +8,10 @@
 Ground::Ground(SDL_Renderer *renderer)
 {
     this->frameRate = 60;
-    this->animals = std::vector<Animal *>();
+    this->animals = std::vector<Entity *>();
+    this->player = new Player(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, renderer);
     this->renderer = renderer;
-    this->initAnimals();
+    this->init();
 }
 
 Ground::~Ground()
@@ -17,7 +19,7 @@ Ground::~Ground()
     printf("Ground destroyed\n");
 }
 
-void Ground::initAnimals()
+void Ground::init()
 {
     for (int i = 0; i < 3; i++)
     {
@@ -37,21 +39,44 @@ void Ground::loop()
     bool quit = false;
     while (!quit)
     {
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+            case SDL_KEYDOWN:
+                switch (event.key.keysym.sym)
+                {
+                case SDLK_LEFT:
+                    this->player->move();
+                    break;
+                case SDLK_RIGHT:
+                    this->player->move();
+                    break;
+                case SDLK_UP:
+                    this->player->move();
+                    break;
+                case SDLK_DOWN:
+                    this->player->move();
+                    break;
+                default:
+                    break;
+                }
+            case SDL_QUIT:
+                quit = true;
+                break;
+            default:
+                break;
+            }
+        }
 
         if (SDL_GetTicks() >= 10000)
         {
             quit = true;
         }
 
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-            {
-                quit = true;
-            }
-        }
-
         SDL_RenderClear(renderer);
+
+        this->player->draw();
 
         for (size_t i = 0; i < this->animals.size(); i++)
         {
