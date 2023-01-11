@@ -41,9 +41,8 @@ void Ground::loop()
     {
         while (SDL_PollEvent(&event))
         {
-            switch (event.type)
+            if (event.type == SDL_KEYDOWN)
             {
-            case SDL_KEYDOWN:
                 switch (event.key.keysym.sym)
                 {
                 case SDLK_LEFT:
@@ -61,10 +60,10 @@ void Ground::loop()
                 default:
                     break;
                 }
-            case SDL_QUIT:
+            }
+            else if (event.type == SDL_QUIT)
+            {
                 quit = true;
-                break;
-            default:
                 break;
             }
         }
