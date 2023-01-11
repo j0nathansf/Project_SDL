@@ -4,10 +4,10 @@
 
 enum Direction
 {
-    UP,
-    LEFT,
-    RIGHT,
-    DOWN
+    UP = 0,
+    LEFT = 1,
+    RIGHT = 2,
+    DOWN = 3
 };
 
 class Entity
