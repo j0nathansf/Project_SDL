@@ -2,11 +2,11 @@
 
 #pragma once
 
-class Player : public Entity
+class Shepherd : public Entity
 {
 public:
-    Player(int x, int y, int velocity, SDL_Renderer *renderer);
-    ~Player();
+    Shepherd(int x, int y, int velocity, SDL_Renderer *renderer);
+    ~Shepherd();
     void move(Direction direction);
     void draw();
     int isAlive();

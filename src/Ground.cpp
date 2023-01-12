@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Shepherd.h"
 #include "Ground.h"
 #include "Sheep.h"
 #include "Wolf.h"
@@ -9,7 +9,7 @@ Ground::Ground(SDL_Renderer *renderer)
 {
     this->frameRate = 60;
     this->animals = std::vector<Entity *>();
-    this->player = new Player(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, renderer);
+    this->player = new Shepherd(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, renderer);
     this->renderer = renderer;
     this->init();
 }

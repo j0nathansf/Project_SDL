@@ -1,21 +1,21 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Player.h"
+#include "Shepherd.h"
 #include "constants.h"
 #include <cstdio>
 
-Player::Player(int x, int y, int velocity, SDL_Renderer *renderer) : Entity(x, y, velocity, renderer, IMG_Load("./media/player.png"))
+Shepherd::Shepherd(int x, int y, int velocity, SDL_Renderer *renderer) : Entity(x, y, velocity, renderer, IMG_Load("./media/player.png"))
 {
     this->srcR = {0, 0, SHAPE_SIZE, SHAPE_SIZE};
     this->lifeTime = rand() % 3000 + 10000000;
     this->birthTime = SDL_GetTicks();
 }
 
-Player::~Player()
+Shepherd::~Shepherd()
 {
 }
 
-void Player::draw()
+void Shepherd::draw()
 {
     SDL_Rect destR;
 
@@ -28,7 +28,7 @@ void Player::draw()
     SDL_RenderPresent(renderer);
 }
 
-void Player::move(Direction direction)
+void Shepherd::move(Direction direction)
 {
     int speed = rand() % 3 + 1;
     switch (direction)
@@ -48,7 +48,7 @@ void Player::move(Direction direction)
     }
 }
 
-int Player::isAlive()
+int Shepherd::isAlive()
 {
     return SDL_GetTicks() - this->birthTime < this->lifeTime;
 }
