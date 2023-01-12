@@ -2,9 +2,8 @@
 #include "Sheep.h"
 #include <cstdio>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
-Sheep::Sheep(int x, int y, int velocity, SDL_Renderer *renderer) : Animal(x, y, velocity, renderer, IMG_Load("./media/sheep.png"))
+Sheep::Sheep(int x, int y, int velocity, SDL_Surface *surface_ptr) : Animal(x, y, velocity, surface_ptr, "./media/sheep.png")
 {
 }
 
@@ -12,21 +11,22 @@ Sheep::~Sheep()
 {
 }
 
-void Sheep::move(Direction direction)
+void Sheep::move(int direction)
 {
+    int test = rand() % 4;
     int speed = rand() % 3 + 1;
-    switch (direction)
+    switch (test)
     {
-    case RIGHT:
+    case 0:
         this->x += speed;
         break;
-    case LEFT:
+    case 1:
         this->x -= speed;
         break;
-    case DOWN:
+    case 2:
         this->y += speed;
         break;
-    case UP:
+    case 3:
         this->y -= speed;
         break;
     }

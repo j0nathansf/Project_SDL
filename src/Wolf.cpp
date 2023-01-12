@@ -1,9 +1,8 @@
 #include "Animal.h"
 #include "Wolf.h"
 #include <cstdio>
-#include <SDL2/SDL_image.h>
 
-Wolf::Wolf(int x, int y, int velocity, SDL_Renderer *renderer) : Animal(x, y, velocity, renderer, IMG_Load("./media/wolf.png"))
+Wolf::Wolf(int x, int y, int velocity, SDL_Surface *surface_ptr) : Animal(x, y, velocity, surface_ptr, "./media/wolf.png")
 {
 }
 
@@ -11,21 +10,22 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(Direction direction)
+void Wolf::move(int direction)
 {
+    int test = rand() % 4;
     int speed = rand() % 3 + 1;
-    switch (direction)
+    switch (test)
     {
-    case RIGHT:
+    case 0:
         this->x += speed;
         break;
-    case LEFT:
+    case 1:
         this->x -= speed;
         break;
-    case DOWN:
+    case 2:
         this->y += speed;
         break;
-    case UP:
+    case 3:
         this->y -= speed;
         break;
     }

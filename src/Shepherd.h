@@ -5,9 +5,9 @@
 class Shepherd : public Entity
 {
 public:
-    Shepherd(int x, int y, int velocity, SDL_Renderer *renderer);
+    Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr);
     ~Shepherd();
-    void move(Direction direction);
+    void move(int direction = -1);
     void draw();
     int isAlive();
 

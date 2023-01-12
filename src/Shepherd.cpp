@@ -4,7 +4,7 @@
 #include "constants.h"
 #include <cstdio>
 
-Shepherd::Shepherd(int x, int y, int velocity, SDL_Renderer *renderer) : Entity(x, y, velocity, renderer, IMG_Load("./media/player.png"))
+Shepherd::Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr) : Entity(x, y, velocity, surface_ptr, "./media/player.png")
 {
     this->srcR = {0, 0, SHAPE_SIZE, SHAPE_SIZE};
     this->lifeTime = rand() % 3000 + 10000000;
@@ -24,25 +24,24 @@ void Shepherd::draw()
     destR.w = SHAPE_SIZE;
     destR.h = SHAPE_SIZE;
 
-    SDL_RenderCopy(renderer, this->texture, &this->srcR, &destR);
-    SDL_RenderPresent(renderer);
+    SDL_BlitScaled(this->texture, NULL, this->surface, &destR);
 }
 
-void Shepherd::move(Direction direction)
+void Shepherd::move(int direction)
 {
     int speed = rand() % 3 + 1;
     switch (direction)
     {
-    case RIGHT:
+    case 0:
         this->x += speed;
         break;
-    case LEFT:
+    case 1:
         this->x -= speed;
         break;
-    case DOWN:
+    case 2:
         this->y += speed;
         break;
-    case UP:
+    case 3:
         this->y -= speed;
         break;
     }

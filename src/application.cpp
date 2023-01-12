@@ -18,7 +18,7 @@ int main(int argc, char *args[])
         "Project SDL",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         SCREEN_WIDTH, SCREEN_HEIGHT,
-        0);
+        SDL_WINDOW_SHOWN);
 
     if (window == NULL)
     {
@@ -26,11 +26,9 @@ int main(int argc, char *args[])
         return 1;
     }
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_Surface *surface = SDL_GetWindowSurface(window);
 
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-
-    Ground *g = new Ground(renderer);
+    Ground *g = new Ground(surface, window);
     g->loop();
 
     SDL_DestroyWindow(window);

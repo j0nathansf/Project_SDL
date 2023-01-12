@@ -5,12 +5,13 @@
 #include "constants.h"
 #include <cstdio>
 
-Ground::Ground(SDL_Renderer *renderer)
+Ground::Ground(SDL_Surface *surface_ptr, SDL_Window *window_ptr)
 {
     this->frameRate = 60;
     this->animals = std::vector<Entity *>();
-    this->player = new Shepherd(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, renderer);
-    this->renderer = renderer;
+    this->player = new Shepherd(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, surface_ptr);
+    this->surface = surface_ptr;
+    this->window = window_ptr;
     this->init();
 }
 
@@ -22,12 +23,12 @@ void Ground::init()
 {
     for (int i = 0; i < 3; i++)
     {
-        this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->renderer));
+        this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface));
     }
 
     for (int i = 0; i < 3; i++)
     {
-        this->animals.push_back(new Wolf(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->renderer));
+        this->animals.push_back(new Wolf(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface));
     }
 }
 
@@ -36,6 +37,7 @@ void Ground::loop()
 
     SDL_Event event;
     bool quit = false;
+    SDL_Rect field = SDL_Rect{0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
     while (!quit)
     {
         while (SDL_PollEvent(&event))
@@ -44,21 +46,21 @@ void Ground::loop()
             {
                 switch (event.key.keysym.sym)
                 {
-                case SDLK_a:
-                case SDLK_LEFT:
-                    this->player->move(LEFT);
-                    break;
                 case SDLK_d:
                 case SDLK_RIGHT:
-                    this->player->move(RIGHT);
+                    this->player->move(0);
                     break;
-                case SDLK_w:
-                case SDLK_UP:
-                    this->player->move(UP);
+                case SDLK_a:
+                case SDLK_LEFT:
+                    this->player->move(1);
                     break;
                 case SDLK_s:
                 case SDLK_DOWN:
-                    this->player->move(DOWN);
+                    this->player->move(2);
+                    break;
+                case SDLK_w:
+                case SDLK_UP:
+                    this->player->move(3);
                     break;
                 default:
                     break;
@@ -77,17 +79,17 @@ void Ground::loop()
             break;
         }
 
-        SDL_RenderClear(renderer);
+        SDL_FillRect(surface, &field, SDL_MapRGB(surface->format, 0, 255, 0));
 
         this->player->draw();
 
         for (size_t i = 0; i < this->animals.size(); i++)
         {
-            enum Direction random_direction = static_cast<Direction>(rand() % DOWN);
-            this->animals[i]->move(random_direction);
+            this->animals[i]->move();
             this->animals[i]->draw();
         }
 
+        SDL_UpdateWindowSurface(window);
         SDL_Delay(1000 / this->frameRate);
     }
 }

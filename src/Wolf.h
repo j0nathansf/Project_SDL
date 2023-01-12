@@ -5,7 +5,7 @@
 class Wolf : public Animal
 {
 public:
-    Wolf(int x, int y, int velocity, SDL_Renderer *renderer);
+    Wolf(int x, int y, int velocity, SDL_Surface *surface_ptr);
     ~Wolf();
-    void move(Direction direction);
+    void move(int direction = -1);
 };
