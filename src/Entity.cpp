@@ -15,4 +15,5 @@ Entity::Entity(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::
 
 Entity::~Entity()
 {
+    SDL_FreeSurface(this->texture);
 }

@@ -40,6 +40,7 @@ int main(int argc, char *args[])
     Ground *g = new Ground(surface, window, std::stoul(args[1]), std::stoul(args[2]));
     g->loop(std::stoul(args[3]));
 
+    SDL_FreeSurface(surface);
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
