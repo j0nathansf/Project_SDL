@@ -7,13 +7,15 @@
 class Ground
 {
 public:
-    Ground(SDL_Surface *surface_ptr, SDL_Window *window_ptr);
+    Ground(SDL_Surface *surface_ptr, SDL_Window *window_ptr, unsigned n_sheep, unsigned n_wolf);
     ~Ground();
-    void loop();
+    void loop(unsigned period);
     void init();
 
 private:
     unsigned int frameRate;
+    unsigned n_sheep;
+    unsigned n_wolf;
     std::vector<Entity *> animals;
     Entity *player;
     SDL_Surface *surface;

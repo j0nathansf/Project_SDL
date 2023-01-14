@@ -5,10 +5,12 @@
 #include "constants.h"
 #include <cstdio>
 
-Ground::Ground(SDL_Surface *surface_ptr, SDL_Window *window_ptr)
+Ground::Ground(SDL_Surface *surface_ptr, SDL_Window *window_ptr, unsigned n_sheep, unsigned n_wolf)
 {
     this->frameRate = 60;
     this->animals = std::vector<Entity *>();
+    this->n_sheep = n_sheep;
+    this->n_wolf = n_wolf;
     this->player = new Shepherd(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, surface_ptr);
     this->surface = surface_ptr;
     this->window = window_ptr;
@@ -21,18 +23,13 @@ Ground::~Ground()
 
 void Ground::init()
 {
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < n_sheep; i++)
         this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface));
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < n_wolf; i++)
         this->animals.push_back(new Wolf(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface));
-    }
 }
 
-void Ground::loop()
+void Ground::loop(unsigned period)
 {
 
     SDL_Event event;
@@ -73,7 +70,7 @@ void Ground::loop()
             }
         }
 
-        if (SDL_GetTicks() >= 10000)
+        if (SDL_GetTicks() >= period)
         {
             quit = true;
             break;

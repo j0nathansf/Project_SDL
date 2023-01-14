@@ -1,6 +1,8 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <ostream>
 #include "Sheep.h"
 #include "Wolf.h"
 #include "Ground.h"
@@ -8,6 +10,13 @@
 
 int main(int argc, char *args[])
 {
+    std::cout << "Starting up the application" << std::endl;
+
+    if (argc != 4)
+        throw std::runtime_error("Need three arguments - "
+                                 "number of sheep, number of wolves, "
+                                 "simulation time in seconde\n");
+
     SDL_Window *window = NULL;
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -28,8 +37,8 @@ int main(int argc, char *args[])
 
     SDL_Surface *surface = SDL_GetWindowSurface(window);
 
-    Ground *g = new Ground(surface, window);
-    g->loop();
+    Ground *g = new Ground(surface, window, std::stoul(args[1]), std::stoul(args[2]));
+    g->loop(std::stoul(args[3]));
 
     SDL_DestroyWindow(window);
     SDL_Quit();
