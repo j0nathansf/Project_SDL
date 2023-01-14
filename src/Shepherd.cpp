@@ -29,20 +29,20 @@ void Shepherd::draw()
 
 void Shepherd::move(int direction)
 {
-    int speed = rand() % 3 + 1;
+    int speed = SHAPE_SIZE / 16;
     switch (direction)
     {
     case 0:
-        this->x += speed;
+        this->x = ((x + speed) + SHAPE_SIZE >= SCREEN_WIDTH) ? SCREEN_WIDTH - SHAPE_SIZE : this->x + speed;
         break;
     case 1:
-        this->x -= speed;
+        this->x = ((x - speed) < 0) ? 0 : this->x - speed;
         break;
     case 2:
-        this->y += speed;
+        this->y = ((y + speed) + SHAPE_SIZE >= SCREEN_HEIGHT) ? SCREEN_HEIGHT - SHAPE_SIZE : this->y + speed;
         break;
     case 3:
-        this->y -= speed;
+        this->y = ((y - speed) < 0) ? 0 : this->y - speed;
         break;
     }
 }
