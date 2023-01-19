@@ -3,12 +3,20 @@
 
 #pragma once
 
+enum Gender
+{
+    MALE = 0,
+    FEMALE = 1,
+};
+
 class Animal : public Entity
 {
 public:
-    Animal(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image);
+    Animal(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image, Gender gender);
     virtual ~Animal();
     virtual void move(int direction = -1) = 0;
+    virtual void action() = 0;
+    void default_move();
     void draw();
     int isAlive();
 
@@ -16,4 +24,5 @@ protected:
     SDL_Rect srcR;
     Uint32 birthTime;
     Uint32 lifeTime;
+    Gender gender;
 };
