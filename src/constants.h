@@ -4,3 +4,4 @@
 #define SCREEN_HEIGHT 720
 
 #define SHAPE_SIZE 64
+#define ENTITY_RANGE 32

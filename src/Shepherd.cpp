@@ -1,5 +1,4 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "Shepherd.h"
 #include "constants.h"
 #include <cstdio>
@@ -27,22 +26,22 @@ void Shepherd::draw()
     SDL_BlitScaled(this->texture, NULL, this->surface, &destR);
 }
 
-void Shepherd::move(int direction)
+void Shepherd::move(const std::vector<Entity *> entities, int direction)
 {
     int speed = SHAPE_SIZE / 16;
     switch (direction)
     {
     case 0:
-        this->x = ((x + speed) + SHAPE_SIZE >= SCREEN_WIDTH) ? SCREEN_WIDTH - SHAPE_SIZE : this->x + speed;
+        Entity::step(speed, 0);
         break;
     case 1:
-        this->x = ((x - speed) < 0) ? 0 : this->x - speed;
+        Entity::step(-speed, 0);
         break;
     case 2:
-        this->y = ((y + speed) + SHAPE_SIZE >= SCREEN_HEIGHT) ? SCREEN_HEIGHT - SHAPE_SIZE : this->y + speed;
+        Entity::step(0, speed);
         break;
     case 3:
-        this->y = ((y - speed) < 0) ? 0 : this->y - speed;
+        Entity::step(0, -speed);
         break;
     }
 }

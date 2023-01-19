@@ -10,9 +10,11 @@ Wolf::~Wolf()
 {
 }
 
-void Wolf::move(int direction)
+void Wolf::move(const std::vector<Entity *> entities, int direction)
 {
-    Animal::default_move();
+    int moveX = -8 + (rand() % static_cast<int>(17));
+    int moveY = -8 + (rand() % static_cast<int>(17));
+    Entity::step(moveX, moveY);
 }
 
 void Wolf::action()

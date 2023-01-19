@@ -7,7 +7,7 @@ class Shepherd : public Entity
 public:
     Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr);
     ~Shepherd();
-    void move(int direction = -1);
+    void move(const std::vector<Entity *> entities, int direction = -1);
     void draw();
     int isAlive();
 

@@ -28,22 +28,6 @@ void Animal::draw()
     SDL_BlitScaled(this->texture, NULL, this->surface, &destR);
 }
 
-void Animal::default_move()
-{
-    int moveX = -8 + (rand() % static_cast<int>(17));
-    int moveY = -8 + (rand() % static_cast<int>(17));
-    x += moveX;
-    y += moveY;
-    if (x < 0)
-        x = 0;
-    if (x + SHAPE_SIZE >= SCREEN_WIDTH)
-        x = SCREEN_WIDTH - SHAPE_SIZE;
-    if (y < 0)
-        y = 0;
-    if (y + SHAPE_SIZE >= SCREEN_HEIGHT)
-        y = SCREEN_HEIGHT - SHAPE_SIZE;
-}
-
 int Animal::isAlive()
 {
     return SDL_GetTicks() - this->birthTime < this->lifeTime;
