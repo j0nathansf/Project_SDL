@@ -50,3 +50,8 @@ int Shepherd::isAlive()
 {
     return SDL_GetTicks() - this->birthTime < this->lifeTime;
 }
+
+std::string Shepherd::name()
+{
+    return "Shepherd";
+}

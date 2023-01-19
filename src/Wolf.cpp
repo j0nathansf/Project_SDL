@@ -20,3 +20,8 @@ void Wolf::move(const std::vector<Entity *> entities, int direction)
 void Wolf::action()
 {
 }
+
+std::string Wolf::name()
+{
+    return "Wolf";
+}

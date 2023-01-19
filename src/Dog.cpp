@@ -21,3 +21,8 @@ void Dog::move(const std::vector<Entity *> entities, int direction)
 void Dog::action()
 {
 }
+
+std::string Dog::name()
+{
+    return "Dog";
+}

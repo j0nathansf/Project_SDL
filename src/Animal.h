@@ -16,6 +16,7 @@ public:
     virtual ~Animal();
     virtual void move(const std::vector<Entity *> entities, int direction = -1) = 0;
     virtual void action() = 0;
+    virtual std::string name() = 0;
     void draw();
     int isAlive();
 

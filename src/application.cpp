@@ -39,6 +39,9 @@ int main(int argc, char *args[])
 
     Ground *g = new Ground(surface, window, std::stoul(args[1]), std::stoul(args[2]));
     g->loop(std::stoul(args[3]));
+    int score = g->compute_score();
+
+    std::cout << "Score : " << score << "." << std::endl;
 
     SDL_FreeSurface(surface);
     SDL_DestroyWindow(window);

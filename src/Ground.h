@@ -11,6 +11,7 @@ public:
     ~Ground();
     void loop(unsigned period);
     void init();
+    int compute_score();
 
 private:
     unsigned int frameRate;

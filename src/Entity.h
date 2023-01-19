@@ -14,6 +14,7 @@ public:
     virtual void draw() = 0;
     virtual int isAlive() = 0;
     void step(int move_x, int move_y);
+    virtual std::string name() = 0;
     bool is_near(Entity *entity);
 
 protected:

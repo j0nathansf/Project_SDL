@@ -78,7 +78,7 @@ void Ground::loop(unsigned period)
             break;
         }
 
-        SDL_FillRect(surface, &field, SDL_MapRGB(surface->format, 0, 255, 0));
+        SDL_FillRect(surface, &field, SDL_MapRGB(surface->format, 60, 98, 85));
 
         this->player->draw();
 
@@ -91,4 +91,16 @@ void Ground::loop(unsigned period)
         SDL_UpdateWindowSurface(window);
         SDL_Delay(1000 / this->frameRate);
     }
+}
+
+int Ground::compute_score()
+{
+    int result = 0;
+    std::string target = "Sheep";
+    for (size_t i = 0; i < this->animals.size(); i++)
+    {
+        if (!target.compare(this->animals[i]->name()))
+            result += 1;
+    }
+    return result;
 }

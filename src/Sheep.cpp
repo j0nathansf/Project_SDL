@@ -22,3 +22,8 @@ void Sheep::move(const std::vector<Entity *> entities, int direction)
 void Sheep::action()
 {
 }
+
+std::string Sheep::name()
+{
+    return "Sheep";
+}
