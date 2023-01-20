@@ -24,7 +24,7 @@ Ground::~Ground()
 
 void Ground::init()
 {
-    this->animals.push_back(new Dog(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface));
+    this->animals.push_back(new Dog(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, this->player));
     for (int i = 0; i < n_sheep; i++)
         this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 2));
     for (int i = 0; i < n_wolf; i++)

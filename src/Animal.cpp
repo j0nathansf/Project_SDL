@@ -19,12 +19,12 @@ void Animal::draw()
 {
     SDL_Rect destR;
 
-    destR.x = this->x;
-    destR.y = this->y;
+    destR.x = this->get_x();
+    destR.y = this->get_y();
     destR.w = SHAPE_SIZE;
     destR.h = SHAPE_SIZE;
 
-    SDL_BlitScaled(this->texture, NULL, this->surface, &destR);
+    SDL_BlitScaled(this->get_texture(), NULL, this->get_surface(), &destR);
 }
 
 int Animal::isAlive()

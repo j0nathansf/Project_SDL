@@ -15,9 +15,15 @@ public:
     virtual int isAlive() = 0;
     void step(int move_x, int move_y);
     virtual std::string name() = 0;
+    int get_x();
+    int get_y();
+    int get_velocity();
+    SDL_Surface *get_surface();
+    SDL_Surface *get_texture();
+    void set_velocity(int new_velocity);
     bool is_near(Entity *entity);
 
-protected:
+private:
     int x;
     int y;
     int velocity;

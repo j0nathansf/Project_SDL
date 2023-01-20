@@ -37,3 +37,33 @@ void Entity::step(int move_x, int move_y)
     if (this->y + SHAPE_SIZE >= SCREEN_HEIGHT)
         this->y = SCREEN_HEIGHT - SHAPE_SIZE;
 }
+
+int Entity::get_x()
+{
+    return this->x;
+}
+
+int Entity::get_y()
+{
+    return this->y;
+}
+
+int Entity::get_velocity()
+{
+    return this->velocity;
+}
+
+void Entity::set_velocity(int new_velocity)
+{
+    this->velocity = new_velocity;
+}
+
+SDL_Surface *Entity::get_surface()
+{
+    return this->surface;
+}
+
+SDL_Surface *Entity::get_texture()
+{
+    return this->texture;
+}
