@@ -70,7 +70,7 @@ std::tuple<std::string, int> Wolf::action(std::vector<Entity *> entities)
         {
             return std::make_tuple("NULL", -1);
         }
-        else if (!entities[i]->name().compare("Sheep") && distance < targeted_distance)
+        else if (Entity::is_near(entities[i]) && !entities[i]->name().compare("Sheep") && distance < targeted_distance)
         {
             targeted_entity = i;
             targeted_distance = distance;

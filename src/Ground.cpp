@@ -84,13 +84,13 @@ void Ground::loop(unsigned period)
 
         for (size_t i = 0; i < this->animals.size(); i++)
         {
+            this->animals[i]->draw();
             std::tuple<std::string, int> res;
             if (!this->animals[i]->is_alive())
                 this->animals.erase(this->animals.begin() + i);
             this->animals[i]->move(animals);
             res = this->animals[i]->action(animals);
             handle_action(res, i);
-            this->animals[i]->draw();
         }
 
         SDL_UpdateWindowSurface(window);
@@ -123,7 +123,7 @@ void Ground::handle_action(std::tuple<std::string, int> action, int current_posi
         this->animals.erase(this->animals.begin() + target);
         this->animals[current_position]->add_life_time(10000);
     }
-    else if (!std::get<0>(action).compare("ADD") && this->animals.size() < 50)
+    else if (!std::get<0>(action).compare("ADD") && this->animals.size() < 50 && rand() % 100 > 90)
     {
         this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 2));
     }

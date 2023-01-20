@@ -27,7 +27,7 @@ void Shepherd::draw()
 
 void Shepherd::move(const std::vector<Entity *> entities, int direction)
 {
-    int speed = SHAPE_SIZE / 16;
+    int speed = SHAPE_SIZE / 8;
     switch (direction)
     {
     case 0:
