@@ -85,10 +85,11 @@ void Ground::loop(unsigned period)
         for (size_t i = 0; i < this->animals.size(); i++)
         {
             std::tuple<std::string, int> res;
-            if (!this->animals[i]->isAlive())
+            if (!this->animals[i]->is_alive())
                 this->animals.erase(this->animals.begin() + i);
             this->animals[i]->move(animals);
             res = this->animals[i]->action(animals);
+            handle_action(res);
             this->animals[i]->draw();
         }
 
@@ -107,4 +108,22 @@ int Ground::compute_score()
             result += 1;
     }
     return result;
+}
+
+void Ground::handle_action(std::tuple<std::string, int> action)
+{
+
+    if (!std::get<0>(action).compare("NULL"))
+    {
+        return;
+    }
+    if (!std::get<0>(action).compare("KILL"))
+    {
+        int target = std::get<1>(action);
+        this->animals.erase(this->animals.begin() + target);
+    }
+    else if (!std::get<0>(action).compare("ADD") && this->animals.size() < 50)
+    {
+        this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 2));
+    }
 }

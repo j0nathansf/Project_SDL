@@ -18,12 +18,10 @@ public:
     virtual void move(const std::vector<Entity *> entities, int direction = -1) = 0;
     virtual std::tuple<std::string, int> action(std::vector<Entity *> entities) = 0;
     virtual std::string name() = 0;
+    bool is_male();
     void draw();
-    int isAlive();
 
 protected:
     SDL_Rect srcR;
-    Uint32 birth_time;
-    Uint32 life_time;
     Gender gender;
 };

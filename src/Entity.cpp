@@ -4,13 +4,15 @@
 #include "constants.h"
 #include <cstdio>
 
-Entity::Entity(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image)
+Entity::Entity(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image, Uint32 life_time)
 {
     this->x = x;
     this->y = y;
     this->velocity = velocity;
     this->surface = surface_ptr;
     this->texture = IMG_Load(texture_image.c_str());
+    this->birth_time = SDL_GetTicks();
+    this->life_time = life_time;
 }
 
 Entity::~Entity()
@@ -72,4 +74,19 @@ SDL_Surface *Entity::get_surface()
 SDL_Surface *Entity::get_texture()
 {
     return this->texture;
+}
+
+Uint32 Entity::get_birth_time()
+{
+    return this->birth_time;
+}
+
+Uint32 Entity::get_life_time()
+{
+    return this->life_time;
+}
+
+bool Entity::is_alive()
+{
+    return SDL_GetTicks() - this->birth_time < this->life_time;
 }

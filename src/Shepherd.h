@@ -11,7 +11,6 @@ public:
     void move(const std::vector<Entity *> entities, int direction = -1);
     std::string name();
     void draw();
-    int isAlive();
     std::tuple<std::string, int> action(std::vector<Entity *> entities);
 
 protected:

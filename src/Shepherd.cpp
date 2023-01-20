@@ -3,11 +3,10 @@
 #include "constants.h"
 #include <cstdio>
 
-Shepherd::Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr) : Entity(x, y, velocity, surface_ptr, "./media/player.png")
+Shepherd::Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr)
+    : Entity(x, y, velocity, surface_ptr, "./media/player.png", DEFAULT_LIFE_TIME)
 {
     this->srcR = {0, 0, SHAPE_SIZE, SHAPE_SIZE};
-    this->life_time = DEFAULT_LIFE_TIME;
-    this->birth_time = SDL_GetTicks();
 }
 
 Shepherd::~Shepherd()
@@ -44,11 +43,6 @@ void Shepherd::move(const std::vector<Entity *> entities, int direction)
         Entity::step(0, -speed);
         break;
     }
-}
-
-int Shepherd::isAlive()
-{
-    return SDL_GetTicks() - this->birth_time < this->life_time;
 }
 
 std::tuple<std::string, int> Shepherd::action(std::vector<Entity *> entities)

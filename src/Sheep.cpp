@@ -44,6 +44,32 @@ void Sheep::move(const std::vector<Entity *> entities, int direction)
 
 std::tuple<std::string, int> Sheep::action(std::vector<Entity *> entities)
 {
+    int targeted_entity = -1;
+    int targeted_distance = 9999;
+
+    if (this->gender == FEMALE)
+    {
+        return std::make_tuple("NULL", -1);
+    }
+
+    for (size_t i = 0; i < entities.size(); i++)
+    {
+        int distance = Entity::compute_distance(entities[i]);
+        if (Entity::is_near(entities[i]) && !entities[i]->name().compare("Sheep") && distance < targeted_distance)
+        {
+            Animal *sheep = dynamic_cast<Animal *>(entities[i]);
+            if (sheep->is_male())
+            {
+                targeted_entity = i;
+                targeted_distance = distance;
+            }
+        }
+    }
+
+    if (targeted_entity != -1)
+    {
+        return std::make_tuple("ADD", targeted_entity);
+    }
     return std::make_tuple("NULL", -1);
 }
 

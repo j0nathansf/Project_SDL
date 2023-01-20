@@ -68,7 +68,7 @@ std::tuple<std::string, int> Wolf::action(std::vector<Entity *> entities)
         int distance = Entity::compute_distance(entities[i]);
         if (Entity::is_near(entities[i]) && !entities[i]->name().compare("Dog"))
         {
-            return std::make_tuple("KILL", -1);
+            return std::make_tuple("NULL", -1);
         }
         else if (!entities[i]->name().compare("Sheep") && distance < targeted_distance)
         {
@@ -81,7 +81,7 @@ std::tuple<std::string, int> Wolf::action(std::vector<Entity *> entities)
     {
         return std::make_tuple("KILL", targeted_entity);
     }
-    return std::make_tuple("KILL", -1);
+    return std::make_tuple("NULL", -1);
 }
 
 std::string Wolf::name()
