@@ -51,6 +51,11 @@ int Shepherd::isAlive()
     return SDL_GetTicks() - this->birth_time < this->life_time;
 }
 
+std::tuple<std::string, int> Shepherd::action(std::vector<Entity *> entities)
+{
+    return std::make_tuple("NULL", -1);
+}
+
 std::string Shepherd::name()
 {
     return "Shepherd";

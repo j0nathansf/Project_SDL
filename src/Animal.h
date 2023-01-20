@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <tuple>
 #include "Entity.h"
 
 #pragma once
@@ -15,7 +16,7 @@ public:
     Animal(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image, Gender gender, Uint32 life_time);
     virtual ~Animal();
     virtual void move(const std::vector<Entity *> entities, int direction = -1) = 0;
-    virtual void action() = 0;
+    virtual std::tuple<std::string, int> action(std::vector<Entity *> entities) = 0;
     virtual std::string name() = 0;
     void draw();
     int isAlive();

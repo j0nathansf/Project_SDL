@@ -9,5 +9,5 @@ public:
     ~Wolf();
     void move(const std::vector<Entity *> entities, int direction);
     std::string name();
-    void action();
+    std::tuple<std::string, int> action(std::vector<Entity *> entities);
 };

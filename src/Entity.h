@@ -14,6 +14,7 @@ public:
     virtual void draw() = 0;
     virtual int isAlive() = 0;
     void step(int move_x, int move_y);
+    virtual std::tuple<std::string, int> action(std::vector<Entity *> entities) = 0;
     virtual std::string name() = 0;
     int get_x();
     int get_y();

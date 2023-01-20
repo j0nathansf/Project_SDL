@@ -59,8 +59,29 @@ void Wolf::move(const std::vector<Entity *> entities, int direction)
     }
 }
 
-void Wolf::action()
+std::tuple<std::string, int> Wolf::action(std::vector<Entity *> entities)
 {
+    int targeted_distance = 99999;
+    int targeted_entity = -1;
+    for (size_t i = 0; i < entities.size(); i++)
+    {
+        int distance = Entity::compute_distance(entities[i]);
+        if (Entity::is_near(entities[i]) && !entities[i]->name().compare("Dog"))
+        {
+            return std::make_tuple("KILL", -1);
+        }
+        else if (!entities[i]->name().compare("Sheep") && distance < targeted_distance)
+        {
+            targeted_entity = i;
+            targeted_distance = distance;
+        }
+    }
+
+    if (targeted_entity != -1)
+    {
+        return std::make_tuple("KILL", targeted_entity);
+    }
+    return std::make_tuple("KILL", -1);
 }
 
 std::string Wolf::name()

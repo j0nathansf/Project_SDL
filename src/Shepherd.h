@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include <tuple>
 
 #pragma once
 
@@ -11,6 +12,7 @@ public:
     std::string name();
     void draw();
     int isAlive();
+    std::tuple<std::string, int> action(std::vector<Entity *> entities);
 
 protected:
     SDL_Rect srcR;

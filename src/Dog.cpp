@@ -23,8 +23,9 @@ void Dog::move(const std::vector<Entity *> entities, int direction)
     Entity::step((diff_x < -8 || diff_x > 8) ? moveX : 0, (diff_y < -8 || diff_y > 8) ? moveY : 0);
 }
 
-void Dog::action()
+std::tuple<std::string, int> Dog::action(std::vector<Entity *> entities)
 {
+    return std::make_tuple("NULL", -1);
 }
 
 std::string Dog::name()

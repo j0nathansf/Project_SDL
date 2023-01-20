@@ -42,8 +42,9 @@ void Sheep::move(const std::vector<Entity *> entities, int direction)
     }
 }
 
-void Sheep::action()
+std::tuple<std::string, int> Sheep::action(std::vector<Entity *> entities)
 {
+    return std::make_tuple("NULL", -1);
 }
 
 std::string Sheep::name()

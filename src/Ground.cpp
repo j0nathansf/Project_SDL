@@ -84,9 +84,11 @@ void Ground::loop(unsigned period)
 
         for (size_t i = 0; i < this->animals.size(); i++)
         {
+            std::tuple<std::string, int> res;
             if (!this->animals[i]->isAlive())
                 this->animals.erase(this->animals.begin() + i);
             this->animals[i]->move(animals);
+            res = this->animals[i]->action(animals);
             this->animals[i]->draw();
         }
 
