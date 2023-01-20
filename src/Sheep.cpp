@@ -19,7 +19,7 @@ void Sheep::move(const std::vector<Entity *> entities, int direction)
 
     int targeted_entity = -1;
 
-    for (size_t i = 1; i < entities.size(); i++)
+    for (size_t i = 0; i < entities.size(); i++)
     {
         if (Entity::is_near(entities[i]) && !entities[i]->name().compare("Wolf"))
             targeted_entity = i;
