@@ -12,7 +12,7 @@ public:
     void loop(unsigned period);
     void init();
     int compute_score();
-    void handle_action(std::tuple<std::string, int> action);
+    void handle_action(std::tuple<std::string, int> action, int current_position);
 
 private:
     unsigned int frameRate;

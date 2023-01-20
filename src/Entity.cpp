@@ -90,3 +90,8 @@ bool Entity::is_alive()
 {
     return SDL_GetTicks() - this->birth_time < this->life_time;
 }
+
+void Entity::add_life_time(Uint32 additional_time)
+{
+    this->life_time += additional_time;
+}

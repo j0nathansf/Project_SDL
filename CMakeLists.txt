@@ -5,3 +5,4 @@ project ("Project_SDL1")
 set (CMAKE_CXX_STANDARD 17)
 
 add_subdirectory ("src")
+file(COPY media DESTINATION ${CMAKE_BINARY_DIR})

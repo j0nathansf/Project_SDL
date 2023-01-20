@@ -89,7 +89,7 @@ void Ground::loop(unsigned period)
                 this->animals.erase(this->animals.begin() + i);
             this->animals[i]->move(animals);
             res = this->animals[i]->action(animals);
-            handle_action(res);
+            handle_action(res, i);
             this->animals[i]->draw();
         }
 
@@ -110,7 +110,7 @@ int Ground::compute_score()
     return result;
 }
 
-void Ground::handle_action(std::tuple<std::string, int> action)
+void Ground::handle_action(std::tuple<std::string, int> action, int current_position)
 {
 
     if (!std::get<0>(action).compare("NULL"))
@@ -121,6 +121,7 @@ void Ground::handle_action(std::tuple<std::string, int> action)
     {
         int target = std::get<1>(action);
         this->animals.erase(this->animals.begin() + target);
+        this->animals[current_position]->add_life_time(10000);
     }
     else if (!std::get<0>(action).compare("ADD") && this->animals.size() < 50)
     {
