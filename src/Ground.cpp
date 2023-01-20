@@ -28,7 +28,7 @@ void Ground::init()
     for (int i = 0; i < n_sheep; i++)
         this->animals.push_back(new Sheep(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 2));
     for (int i = 0; i < n_wolf; i++)
-        this->animals.push_back(new Wolf(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 3000 + 2000));
+        this->animals.push_back(new Wolf(rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 2, this->surface, rand() % 3000 + 7000));
 }
 
 void Ground::loop(unsigned period)

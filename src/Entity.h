@@ -22,6 +22,7 @@ public:
     SDL_Surface *get_texture();
     void set_velocity(int new_velocity);
     bool is_near(Entity *entity);
+    int compute_distance(Entity *entity);
 
 private:
     int x;

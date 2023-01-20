@@ -24,6 +24,12 @@ bool Entity::is_near(Entity *entity)
     return distance <= ENTITY_RANGE;
 }
 
+int Entity::compute_distance(Entity *entity)
+{
+    double distance = sqrt(pow(entity->x - this->x, 2) + pow(entity->y - this->y, 2));
+    return (int)distance;
+}
+
 void Entity::step(int move_x, int move_y)
 {
     this->x += move_x;
