@@ -14,6 +14,6 @@ public:
 
 protected:
     SDL_Rect srcR;
-    Uint32 lifeTime;
-    Uint32 birthTime;
+    Uint32 life_time;
+    Uint32 birth_time;
 };

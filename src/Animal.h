@@ -12,7 +12,7 @@ enum Gender
 class Animal : public Entity
 {
 public:
-    Animal(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image, Gender gender);
+    Animal(int x, int y, int velocity, SDL_Surface *surface_ptr, const std::string &texture_image, Gender gender, Uint32 life_time);
     virtual ~Animal();
     virtual void move(const std::vector<Entity *> entities, int direction = -1) = 0;
     virtual void action() = 0;
@@ -22,7 +22,7 @@ public:
 
 protected:
     SDL_Rect srcR;
-    Uint32 birthTime;
-    Uint32 lifeTime;
+    Uint32 birth_time;
+    Uint32 life_time;
     Gender gender;
 };

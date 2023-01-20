@@ -3,7 +3,8 @@
 #include <cstdio>
 #include <SDL2/SDL.h>
 
-Dog::Dog(int x, int y, int velocity, SDL_Surface *surface_ptr) : Animal(x, y, velocity, surface_ptr, "./media/dog.png", MALE)
+Dog::Dog(int x, int y, int velocity, SDL_Surface *surface_ptr)
+    : Animal(x, y, velocity, surface_ptr, "./media/dog.png", MALE, DEFAULT_LIFE_TIME)
 {
 }
 

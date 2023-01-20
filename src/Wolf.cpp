@@ -2,7 +2,8 @@
 #include "Wolf.h"
 #include <cstdio>
 
-Wolf::Wolf(int x, int y, int velocity, SDL_Surface *surface_ptr) : Animal(x, y, velocity, surface_ptr, "./media/wolf.png", MALE)
+Wolf::Wolf(int x, int y, int velocity, SDL_Surface *surface_ptr, Uint32 life_time)
+    : Animal(x, y, velocity, surface_ptr, "./media/wolf.png", MALE, life_time)
 {
 }
 

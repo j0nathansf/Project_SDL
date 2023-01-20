@@ -6,8 +6,8 @@
 Shepherd::Shepherd(int x, int y, int velocity, SDL_Surface *surface_ptr) : Entity(x, y, velocity, surface_ptr, "./media/player.png")
 {
     this->srcR = {0, 0, SHAPE_SIZE, SHAPE_SIZE};
-    this->lifeTime = rand() % 3000 + 10000000;
-    this->birthTime = SDL_GetTicks();
+    this->life_time = DEFAULT_LIFE_TIME;
+    this->birth_time = SDL_GetTicks();
 }
 
 Shepherd::~Shepherd()
@@ -48,7 +48,7 @@ void Shepherd::move(const std::vector<Entity *> entities, int direction)
 
 int Shepherd::isAlive()
 {
-    return SDL_GetTicks() - this->birthTime < this->lifeTime;
+    return SDL_GetTicks() - this->birth_time < this->life_time;
 }
 
 std::string Shepherd::name()
